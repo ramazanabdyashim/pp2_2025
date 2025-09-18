@@ -1,0 +1,153 @@
+0. Подготовка
+
+Скачать материалы: githowto.zip
+.
+
+Распаковать в папку githowto. Внутри будут:
+
+repositories/ — пустая папка для репозиториев.
+
+1. Финальные приготовления
+
+Настроить имя и email:
+
+git config --global user.name "Ваше имя"
+git config --global user.email "почта"
+
+
+Установить ветку по умолчанию main:
+
+git config --global init.defaultBranch main
+
+
+Настроить окончания строк:
+
+Unix/Mac: core.autocrlf input
+
+Windows: core.autocrlf true
+
+Для всех: core.safecrlf warn
+
+2. Создание проекта
+
+Создать директорию и файл:
+
+mkdir work && cd work
+touch hello.html
+
+
+hello.html:
+
+Hello, World
+
+
+Инициализировать репозиторий: git init
+
+Добавить и закоммитить:
+
+git add hello.html
+git commit -m "Initial commit"
+
+3. Проверка состояния
+
+git status показывает состояние файлов и индекс.
+
+Если ветка master вместо main, переименовать:
+
+git branch -m master main
+
+4. Внесение изменений
+
+Изменили hello.html → <h1>Hello, World!</h1>
+
+git status показывает изменения, но они не проиндексированы.
+
+5. Индексация изменений
+
+Добавляем изменения в индекс:
+
+git add hello.html
+git status
+
+
+Теперь файл отмечен как готовый к коммиту.
+
+6. Индексация и коммит
+
+Индексация и коммит — разные шаги, можно группировать изменения.
+
+Пример:
+
+git add a.html b.html
+git commit -m "Changes for a and b"
+git add c.html
+git commit -m "Unrelated change to c"
+
+7. Коммит изменений
+
+git commit без -m открывает редактор для ввода сообщения.
+
+После коммита: git status → чистое дерево.
+
+8. Изменения, а не файлы
+
+Git работает с изменениями, а не файлами.
+
+Пример:
+
+Добавили <html><body> → проиндексировали.
+
+Добавили <head> → изменения ещё не в индексе.
+
+Коммит фиксирует только то, что было в индексе.
+
+9. История
+
+Просмотр истории:
+
+git log
+git log --oneline
+
+
+Настройка формата:
+
+git config --global format.pretty '%h %ad | %s%d [%an]'
+git config --global log.date short
+
+10. Получение старых версий
+
+Возврат к прошлому коммиту:
+
+git checkout <hash>
+
+
+Возврат к последнему состоянию ветки:
+
+git switch main
+
+11. Создание тегов версий
+
+Создать тег: git tag v1
+
+Переключение по тегам: git checkout v1
+
+Список тегов: git tag
+
+В логе теги тоже видны.
+
+12. Отмена локальных изменений (до индексации)
+
+Если файл изменён, но не проиндексирован:
+
+git restore hello.html
+
+13. Отмена проиндексированных изменений
+
+Если файл проиндексирован:
+
+git restore --staged hello.html
+
+
+Чтобы вернуть и рабочую директорию:
+
+git restore hello.html
