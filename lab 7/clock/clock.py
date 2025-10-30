@@ -11,7 +11,9 @@ clock = pygame.time.Clock()
 pygame.display.set_caption("Мики Маус Часы")
 
 chasiki = pygame.image.load('C:\\Users\\ramaz\\Desktop\\lab 7\\clock\\chasi.png')
+
 levo = pygame.image.load('C:\\Users\\ramaz\\Desktop\\lab 7\\clock\\levo.png')
+
 pravo = pygame.image.load('C:\\Users\\ramaz\\Desktop\\lab 7\\clock\\pravo.png')
 
 chasiki = pygame.transform.scale(chasiki, (1000, 800))
@@ -25,26 +27,24 @@ while not done:
         if event.type == pygame.QUIT:
             done = True
 
+    screen.blit(chasiki, (0, 0))
     current = time.localtime()
-
-
     minute = current.tm_min
     second = current.tm_sec
 
-    secondAngle = -second * 6
-    minuteAngle = -minute * 6 - (second / 60) * 6 - 50
+    levoCordinate = -second * 6
+    pravoCordinate = -minute * 6 - (second / 60) * 6 - 50
 
-    screen.blit(chasiki, (0, 0))
 
-    rotatedPravo = pygame.transform.rotate(pravo, minuteAngle)
+    altPravo = pygame.transform.rotate(pravo, pravoCordinate)
     
-    pravoRect = rotatedPravo.get_rect(center=(500, 400))
-    screen.blit(rotatedPravo, pravoRect)
+    pravoRect = altPravo.get_rect(center=(500, 400))
+    screen.blit(altPravo, pravoRect)
 
-    rotatedLevo = pygame.transform.rotate(levo, secondAngle)
+    altLevo = pygame.transform.rotate(levo, levoCordinate)
     
-    levoRect = rotatedLevo.get_rect(center=(500, 400))
-    screen.blit(rotatedLevo, levoRect)
+    levoRect = altLevo.get_rect(center=(500, 400))
+    screen.blit(altLevo, levoRect)
 
     pygame.display.flip()
 
